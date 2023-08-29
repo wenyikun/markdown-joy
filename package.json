@@ -1,0 +1,156 @@
+{
+  "name": "markdown-joy",
+  "displayName": "Markdown Joy",
+  "description": "Markdown Joy是VSCode ChatGPT智能Markdown插件，轻松编写Markdown文章，无缝适配公众号、小红书等平台，畅享写作乐趣！",
+  "version": "0.0.1",
+  "publisher": "wenyikun",
+  "icon": "dist/web/logo.png",
+  "engines": {
+    "vscode": "^1.75.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "activationEvents": [],
+  "main": "./dist/extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "markdown-joy.openAndPreveiewFile",
+        "title": "📖 MD-J 打开并预览"
+      },
+      {
+        "command": "markdown-joy.preveiewFile",
+        "title": "📖 MD-J 预览"
+      },
+      {
+        "command": "markdown-joy.translateWhole",
+        "title": "📖 MD-J 翻译全文"
+      },
+      {
+        "command": "markdown-joy.polishWhole",
+        "title": "📖 MD-J 润色全文"
+      },
+      {
+        "command": "markdown-joy.translateSelection",
+        "title": "📖 MD-J 翻译片段"
+      },
+      {
+        "command": "markdown-joy.polishSelection",
+        "title": "📖 MD-J 润色片段"
+      }
+    ],
+    "menus": {
+      "explorer/context": [
+        {
+          "when": "resourceLangId == markdown",
+          "command": "markdown-joy.openAndPreveiewFile",
+          "group": "markdown-joy"
+        }
+      ],
+      "editor/context": [
+        {
+          "when": "resourceLangId == markdown",
+          "command": "markdown-joy.preveiewFile",
+          "group": "markdown-joy"
+        },
+        {
+          "when": "resourceLangId == markdown && editorHasSelection",
+          "command": "markdown-joy.translateSelection",
+          "group": "markdown-joy"
+        },
+        {
+          "when": "resourceLangId == markdown && editorHasSelection",
+          "command": "markdown-joy.polishSelection",
+          "group": "markdown-joy"
+        },
+        {
+          "when": "resourceLangId == markdown && !editorHasSelection",
+          "command": "markdown-joy.translateWhole",
+          "group": "markdown-joy"
+        },
+        {
+          "when": "resourceLangId == markdown && !editorHasSelection",
+          "command": "markdown-joy.polishWhole",
+          "group": "markdown-joy"
+        }
+      ]
+    },
+    "configuration": {
+      "title": "Markdown Joy",
+      "properties": {
+        "markdown-joy.chatApi": {
+          "type": "string",
+          "default": "https://api.openai.com/v1/chat/completions",
+          "description": "OpenAI API URL"
+        },
+        "markdown-joy.chatModel": {
+          "type": "string",
+          "default": "gpt-3.5-turbo",
+          "description": "OpenAI API Model",
+          "enum": [
+            "gpt-3.5-turbo",
+            "gpt-3.5-turbo-0301",
+            "gpt-3.5-turbo-0613",
+            "gpt-3.5-turbo-16k",
+            "gpt-3.5-turbo-16k-0613",
+            "gpt-4",
+            "gpt-4-0314",
+            "gpt-4-0613",
+            "gpt-4-32k",
+            "gpt-4-32k-0314",
+            "gpt-4-32k-0613"
+          ]
+        },
+        "markdown-joy.chatApiKey": {
+          "type": "string",
+          "default": "",
+          "description": "OpenAI API Key"
+        }
+      }
+    }
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run web:build && npm run compile",
+    "compile": "tsup src/extension.ts --dts --minify --external=vscode",
+    "watch": "npm run compile -- --watch",
+    "web:build": "vite build",
+    "web:watch": "vite build --watch",
+    "pretest": "npm run compile && npm run lint",
+    "lint": "eslint src --ext ts",
+    "test": "node ./out/test/runTest.js"
+  },
+  "devDependencies": {
+    "@bytemd/plugin-frontmatter": "^1.21.0",
+    "@bytemd/plugin-gfm": "^1.21.0",
+    "@bytemd/plugin-highlight": "^1.21.0",
+    "@bytemd/plugin-math": "^1.21.0",
+    "@bytemd/vue-next": "^1.21.0",
+    "@types/glob": "^8.1.0",
+    "@types/mime": "^3.0.1",
+    "@types/mocha": "^10.0.1",
+    "@types/node": "16.x",
+    "@types/vscode": "^1.75.0",
+    "@typescript-eslint/eslint-plugin": "^5.53.0",
+    "@typescript-eslint/parser": "^5.53.0",
+    "@vitejs/plugin-vue": "^4.3.3",
+    "@vscode/test-electron": "^2.2.3",
+    "element-plus": "^2.3.10",
+    "eslint": "^8.34.0",
+    "juejin-markdown-themes": "^1.30.1",
+    "mocha": "^10.2.0",
+    "tsup": "^7.2.0",
+    "typescript": "^4.9.5",
+    "unist-util-visit": "^5.0.0",
+    "unplugin-auto-import": "^0.16.6",
+    "unplugin-vue-components": "^0.25.1",
+    "vite": "^4.4.9"
+  },
+  "dependencies": {
+    "axios": "^1.4.0",
+    "gpt-3-encoder": "^1.1.4",
+    "highlight.js": "^11.8.0",
+    "mime": "^3.0.0",
+    "sharp": "^0.32.5"
+  }
+}

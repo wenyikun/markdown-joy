@@ -1,0 +1,384 @@
+@charset "UTF-8";
+.markdown-body {
+  word-break: break-word;
+  line-height: 1.75;
+  font-weight: 400;
+  font-size: 14px;
+  overflow-x: hidden;
+  color: #353535;
+  transition: color 0.35s;
+}
+.markdown-body h1 {
+  padding-bottom: 4px;
+  margin-top: 36px;
+  margin-bottom: 10px;
+  font-size: 30px;
+  line-height: 1.5;
+  color: #005bb7;
+  transition: color 0.35s;
+}
+.markdown-body h2 {
+  position: relative;
+  padding-left: 10px;
+  padding-right: 10px;
+  padding-bottom: 10px;
+  margin-top: 36px;
+  margin-bottom: 10px;
+  font-size: 24px;
+  line-height: 1.5;
+  color: #005bb7;
+  border-bottom: 1px solid #ececec;
+  transition: color 0.35s;
+}
+.markdown-body h2::before {
+  content: "「";
+  position: absolute;
+  top: -6px;
+  left: -14px;
+}
+.markdown-body h2::after {
+  content: "」";
+  position: relative;
+  top: 6px;
+  right: auto;
+}
+.markdown-body h3 {
+  position: relative;
+  padding-bottom: 0;
+  margin-top: 30px;
+  margin-bottom: 10px;
+  font-size: 20px;
+  line-height: 1.5;
+  color: #005bb7;
+  padding-left: 6px;
+  transition: color 0.35s;
+}
+.markdown-body h3::before {
+  content: "»";
+  padding-right: 6px;
+  color: #2196f3;
+}
+.markdown-body h4 {
+  padding-bottom: 0;
+  margin-top: 24px;
+  margin-bottom: 10px;
+  font-size: 16px;
+  line-height: 1.5;
+  color: #005bb7;
+  padding-left: 6px;
+  transition: color 0.35s;
+}
+.markdown-body h5 {
+  padding-bottom: 0;
+  margin-top: 18px;
+  margin-bottom: 10px;
+  font-size: 14px;
+  line-height: 1.5;
+  color: #005bb7;
+  padding-left: 6px;
+  transition: color 0.35s;
+}
+.markdown-body h6 {
+  padding-bottom: 0;
+  margin-top: 12px;
+  margin-bottom: 10px;
+  font-size: 12px;
+  line-height: 1.5;
+  color: #005bb7;
+  padding-left: 6px;
+  transition: color 0.35s;
+}
+.markdown-body p {
+  line-height: inherit;
+  margin-top: 16px;
+  margin-bottom: 16px;
+}
+.markdown-body img {
+  max-width: 100%;
+}
+.markdown-body hr {
+  position: relative;
+  width: 98%;
+  height: 1px;
+  margin-top: 32px;
+  margin-bottom: 32px;
+  background-image: linear-gradient(90deg, #3da8f5, rgba(255, 0, 0, 0.3), rgba(255, 255, 255, 0.1), rgba(255, 0, 0, 0.3), #3da8f5);
+  border-width: 0;
+  overflow: visible;
+}
+/* .markdown-body hr::after {
+  content: "";
+  position: absolute;
+  margin: auto;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  top: 0;
+  display: inline-block;
+  width: 60px;
+  height: 20px;
+  background-color: #fff;
+  background-image: url(https://res.vekun.com/uploads/t2-1693029080854.png);
+  background-repeat: no-repeat;
+  background-size: auto 100%;
+  background-position-x: center;
+  transition: background-color 0.5s;
+} */
+.markdown-body code {
+  padding: 0.065em 0.4em;
+  font-family: Menlo, Monaco, Consolas, "Courier New", monospace;
+  font-size: 0.87em;
+  color: #c2185b;
+  word-break: break-word;
+  overflow-x: auto;
+  background-color: #fff4f4;
+  border-radius: 2px;
+}
+.markdown-body pre {
+  font-family: Menlo, Monaco, Consolas, "Courier New", monospace;
+  overflow: auto;
+  position: relative;
+  line-height: 1.75;
+}
+.markdown-body pre > code {
+  display: block;
+  padding: 16px 12px;
+  margin: 0;
+  font-size: 12px;
+  color: #333;
+  word-break: normal;
+  overflow-x: auto;
+  background: #f8f8f8;
+}
+.markdown-body pre > code::-webkit-scrollbar {
+  width: 4px;
+  height: 4px;
+}
+.markdown-body pre > code::-webkit-scrollbar-track {
+  background-color: #bedcff;
+}
+.markdown-body pre > code::-webkit-scrollbar-thumb {
+  background-color: #2196f3;
+  border-radius: 10px;
+}
+.markdown-body a {
+  position: relative;
+  text-decoration: none;
+  color: #3da8f5;
+  border-bottom: 1px solid #bedcff;
+}
+.markdown-body a:hover {
+  color: #007fff;
+  border-bottom-color: #007fff;
+}
+.markdown-body a:active {
+  color: #007fff;
+}
+.markdown-body a::after {
+  position: absolute;
+  content: "";
+  top: 100%;
+  left: 0;
+  width: 100%;
+  opacity: 0;
+  border-bottom: 1px solid #bedcff;
+  transition: top 0.3s, opacity 0.3s;
+  transform: translate3d(0, 0, 0);
+}
+.markdown-body a:hover::after {
+  top: 0;
+  opacity: 1;
+  border-bottom-color: #007fff;
+}
+.markdown-body table {
+  display: inline-block !important;
+  font-size: 12px;
+  width: auto;
+  max-width: 100%;
+  overflow: auto;
+  border: 1px solid #c3e0fd;
+  border-spacing: 0;
+  border-collapse: collapse;
+}
+.markdown-body table thead {
+  color: #000;
+  text-align: left;
+  font-size: 14px;
+  background: #f6f6f6;
+}
+.markdown-body table tr:nth-child(2n) {
+  background-color: #f7fbff;
+}
+.markdown-body table tr:hover {
+  background-color: #e0edf7;
+}
+.markdown-body table th,
+.markdown-body table td {
+  padding: 12px 8px;
+  line-height: 24px;
+  border: 1px solid #c3e0fd;
+}
+.markdown-body table th {
+  color: #005bb7;
+  background-color: #dff0ff;
+}
+.markdown-body table td {
+  min-width: 120px;
+}
+.markdown-body blockquote {
+  color: #8c8c8c;
+  border-left: 4px solid #2196f3;
+  background-color: #f0fdff;
+  padding: 1px 20px;
+  margin: 22px 0;
+  transition: color 0.35s;
+}
+.markdown-body blockquote::after {
+  display: block;
+  content: "";
+}
+.markdown-body blockquote > p {
+  margin: 10px 0;
+}
+.markdown-body blockquote > b, .markdown-body blockquote > strong {
+  color: #2196f3;
+}
+.markdown-body b,
+.markdown-body strong {
+  color: #2196f3;
+}
+.markdown-body i,
+.markdown-body em {
+  color: #4fc3f7;
+}
+.markdown-body del {
+  color: #ccc;
+}
+.markdown-body ol,
+.markdown-body ul {
+  padding-left: 28px;
+}
+.markdown-body ol li,
+.markdown-body ul li {
+  margin-bottom: 0;
+  list-style: inherit;
+}
+.markdown-body ol li .task-list-item,
+.markdown-body ul li .task-list-item {
+  list-style: none;
+}
+.markdown-body ol li .task-list-item ul,
+.markdown-body ol li .task-list-item ol,
+.markdown-body ul li .task-list-item ul,
+.markdown-body ul li .task-list-item ol {
+  margin-top: 0;
+}
+.markdown-body ol ul,
+.markdown-body ol ol,
+.markdown-body ul ul,
+.markdown-body ul ol {
+  margin-top: 4px;
+}
+.markdown-body ol li {
+  padding-left: 6px;
+}
+.markdown-body details > summary {
+  outline: none;
+  color: #005bb7;
+  font-size: 20px;
+  font-weight: bolder;
+  border-bottom: 1px solid #bedcff;
+  cursor: pointer;
+}
+.markdown-body details > p {
+  padding: 10px 20px;
+  margin: 10px 0 0;
+  color: #666;
+  background-color: #f0fdff;
+  border: 2px dashed #2196f3;
+}
+.markdown-body h1::selection,
+.markdown-body h2::selection,
+.markdown-body h3::selection,
+.markdown-body h4::selection,
+.markdown-body h5::selection,
+.markdown-body h6::selection {
+  color: #005bb7;
+  background-color: rgba(175, 207, 247, 0.25);
+}
+.markdown-body p::selection,
+.markdown-body ol li::selection,
+.markdown-body ul li::selection {
+  color: #c80000;
+  background-color: rgba(175, 207, 247, 0.25);
+}
+.markdown-body a::selection,
+.markdown-body b::selection,
+.markdown-body strong::selection,
+.markdown-body i::selection,
+.markdown-body em::selection {
+  background-color: #e8ebec;
+}
+.markdown-body del::selection {
+  color: #999;
+  background-color: #e8ebec;
+}
+.markdown-body table thead th::selection {
+  background-color: transparent;
+}
+.markdown-body table tbody td::selection {
+  background-color: rgba(175, 207, 247, 0.25);
+}
+.markdown-body code::selection {
+  background-color: #ffeaeb;
+}
+.markdown-body pre > code::selection {
+  background-color: rgba(160, 200, 255, 0.25);
+}
+.markdown-body .contains-task-list {
+  padding-left: 14px;
+  list-style: none;
+}
+.markdown-body .contains-task-list input[type=checkbox] {
+  position: relative;
+}
+.markdown-body .contains-task-list input[type=checkbox]::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: inherit;
+  height: inherit;
+  background: #f0f8ff;
+  border: 1px solid #add6ff;
+  border-radius: 2px;
+  box-sizing: border-box;
+  z-index: 1;
+}
+.markdown-body .contains-task-list input[type=checkbox]:checked::after {
+  content: "✓";
+  position: absolute;
+  top: -12px;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 0;
+  height: 0;
+  color: #ff5555;
+  font-size: 20px;
+  font-weight: bold;
+  z-index: 2;
+}
+@media (max-width: 720px) {
+  .markdown-body h1 {
+    font-size: 24px;
+  }
+  .markdown-body h2 {
+    font-size: 20px;
+  }
+  .markdown-body h3 {
+    font-size: 18px;
+  }
+}
