@@ -1,11 +1,19 @@
 import type { Webview, Uri, ExtensionContext } from 'vscode'
 import * as vscode from 'vscode'
 import axios from 'axios'
-import { FETCH, CONFIG, SHOW_INFORMATION_MESSAGE, FILE_CONTENT, ON_FILE_CONTENT, HIGHLIGHT_STYLES, GET_IMAGE } from '../utils/messageTypes'
+import {
+  FETCH,
+  CONFIG,
+  SHOW_INFORMATION_MESSAGE,
+  FILE_CONTENT,
+  ON_FILE_CONTENT,
+  HIGHLIGHT_STYLES,
+  GET_IMAGE,
+} from '../utils/messageTypes'
 import { existsSync, readFile, readFileSync, readdirSync, statSync } from 'fs'
 import { dirname, extname, join } from 'path'
 import { getType } from 'mime'
-import sharp from 'sharp'
+// import sharp from 'sharp'
 
 class ExtensionMessage {
   webview: Webview
@@ -24,7 +32,7 @@ class ExtensionMessage {
     this.webview = webview
     this.resourceUri = options?.resourceUri
     this.context = options?.context
-    this.highlightBaseUrl = this.context ? this.context.extensionPath + '/node_modules/highlight.js/styles/' : ''
+    this.highlightBaseUrl = this.context ? join(this.context.extensionPath, '/node_modules/highlight.js/styles/') : ''
 
     const sharpPromiseMap = new Map()
 
@@ -39,7 +47,7 @@ class ExtensionMessage {
             chatApi: config.chatApi,
             chatApiKey: config.chatApiKey,
             chatModel: config.chatModel,
-            highlightBaseUrl: this.highlightBaseUrl
+            highlightBaseUrl: '../../node_modules/highlight.js/styles/',
           },
         })
       } else if (message.command.startsWith(FILE_CONTENT)) {
@@ -76,20 +84,20 @@ class ExtensionMessage {
           return
         }
         if (!sharpPromiseMap.has(filePath)) {
-          sharpPromiseMap.set(filePath, sharp(filePath).resize(1125).toBuffer())
+          sharpPromiseMap.set(
+            filePath,
+            new Promise((resolve, reject) => {
+              readFile(filePath, { encoding: 'base64' }, (err, data) => {
+                if (err) return
+                resolve(data)
+              })
+            })
+          )
         }
-        // readFile(filePath, { encoding: 'base64' }, (err, data) => {
-        //   if (err) return
-        //   const imageData = `data:${getType(filePath)};base64,${data}`
-        //   this.webview.postMessage({
-        //     command: message.command,
-        //     data: imageData
-        //   })
-        // })
         sharpPromiseMap.get(filePath).then((data: any) => {
           this.webview.postMessage({
             command: message.command,
-            data: `data:${getType(filePath)};base64,${data.toString('base64')}`
+            data: `data:${getType(filePath)};base64,${data}`,
           })
           sharpPromiseMap.delete(filePath)
         })
@@ -101,22 +109,22 @@ class ExtensionMessage {
 
   // 定义一个函数，用于获取指定目录下的所有 CSS 文件
   getAllCSSFiles(directoryPath: string, filesArray: string[] = []) {
-    const files = readdirSync(directoryPath);
+    const files = readdirSync(directoryPath)
 
     for (const file of files) {
-      const filePath = join(directoryPath, file);
-      const fileStats = statSync(filePath);
+      const filePath = join(directoryPath, file)
+      const fileStats = statSync(filePath)
 
       if (fileStats.isDirectory()) {
         // 如果是子目录，递归调用函数
-        this.getAllCSSFiles(filePath, filesArray);
+        this.getAllCSSFiles(filePath, filesArray)
       } else if (fileStats.isFile() && extname(filePath) === '.css') {
         // 如果是文件且扩展名是 .css，将文件路径添加到数组中
-        filesArray.push(filePath.replace(this.highlightBaseUrl, '').replace('.css', ''));
+        filesArray.push(filePath.replace(this.highlightBaseUrl, '').replace('.css', ''))
       }
     }
 
-    return filesArray;
+    return filesArray
   }
 
   fetch(command: string, data: any) {

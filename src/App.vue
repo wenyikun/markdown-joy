@@ -20,7 +20,7 @@ const themeType = ref(localStorage.getItem('markdown-joy-theme') || 'juejin')
 const themeCss = ref('')
 const wrapper = ref()
 const imageMap = new Map()
-
+const now = Date.now()
 const plugins = [
   gfm(),
   highlight(),
@@ -32,7 +32,7 @@ const plugins = [
         visit(tree, 'image', (value) => {
           value.alt = value.url
           if (!/https?:|data:/.test(value.url)) {
-            value.url = './img.svg'
+            value.url = './img.svg?now=' + now
           }
         })
       }),
@@ -44,7 +44,7 @@ const plugins = [
         const el = els[i]
         if (imageMap.has(el.alt)) {
           el.src = imageMap.get(el.alt)
-        } else if (el.src.includes('img.svg')) {
+        } else if (el.src.includes('img.svg?now=' + now)) {
           webviewMessages.getImage(el.alt).then((content) => {
             el.src = content
             imageMap.set(el.alt, content)

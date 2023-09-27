@@ -2,7 +2,7 @@
   "name": "markdown-joy",
   "displayName": "Markdown Joy",
   "description": "Markdown Joy是VSCode ChatGPT智能Markdown插件，轻松编写Markdown文章，无缝适配公众号、小红书等平台，畅享写作乐趣！",
-  "version": "0.0.1",
+  "version": "0.0.3",
   "publisher": "wenyikun",
   "icon": "dist/web/logo.png",
   "engines": {
@@ -11,6 +11,14 @@
   "categories": [
     "Other"
   ],
+  "keywords": [
+    "Markdown",
+    "ChatGPT"
+  ],
+  "repository": {
+    "type": "github",
+    "url": "https://github.com/wenyikun/markdown-joy.git"
+  },
   "activationEvents": [],
   "main": "./dist/extension.js",
   "contributes": {
@@ -150,7 +158,6 @@
     "axios": "^1.4.0",
     "gpt-3-encoder": "^1.1.4",
     "highlight.js": "^11.8.0",
-    "mime": "^3.0.0",
-    "sharp": "^0.32.5"
+    "mime": "^3.0.0"
   }
 }

@@ -1,9 +1,13 @@
-# Change Log
+## [0.0.3]
 
-All notable changes to the "markdown-joy" extension will be documented in this file.
+- 修复 window 路径引入问题
+- 优化图片重名判断
 
-Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how to structure this file.
+## [0.0.2]
 
-## [Unreleased]
+- 修改 sharp 压缩不同平台包问题
 
-- Initial release
+## [0.0.1]
+
+- 预览Markdown
+- 润色、翻译文章功能
